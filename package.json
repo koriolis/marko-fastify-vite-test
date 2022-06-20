@@ -1,0 +1,35 @@
+{
+    "name": "marko-fastify-vite-test",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "dependencies": {
+        "@fastify/compress": "5.0.0",
+        "@fastify/static": "5.0.2",
+        "@marko/fastify": "1.1.0",
+        "fastify": "3.29.0",
+        "marko": "5.21.2",
+        "node-fetch": "^3.2.6"
+    },
+    "scripts": {
+        "build": "rimraf dist && npm run build:server && npm run build:client",
+        "build:client": "NODE_ENV=production vite build",
+        "build:server": "NODE_ENV=production vite build --ssr src/index.js",
+        "dev": "nodemon -w ./src -e js index.js -- --enable-source-maps",
+        "dev:inspect": "node --inspect --enable-source-maps index.js",
+        "start": "NODE_ENV=production node --enable-source-maps index.js",
+        "analysis": "windicss-analysis"
+    },
+    "devDependencies": {
+        "@marko/compiler": "^5.21.4",
+        "@marko/vite": "^2.3.3",
+        "@types/node": "^17.0.42",
+        "nodemon": "^2.0.16",
+        "rimraf": "^3.0.2",
+        "vite": "^2.9.12",
+        "vite-plugin-windicss": "^1.8.4",
+        "windicss": "^3.5.4",
+        "windicss-analysis": "^0.3.5"
+    },
+    "type": "module"
+}

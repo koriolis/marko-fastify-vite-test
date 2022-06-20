@@ -1,0 +1,35 @@
+class {
+	onInput(input) {
+		const activeIndex = input?.tabs.forEach((tab, i) => tab['active'] ? i : 0 ) ?? 0;
+		this.state = { activeIndex };
+	}
+	handleTabClick(tabIndex, event) {
+		this.state.activeIndex = tabIndex;
+		event.preventDefault();
+	}
+}
+<div class="p-4">
+	<nav class="flex gap-4">
+		<for|tab, i| of=input.tabs>
+			$ {
+				const {label, renderBody}  = tab;
+				const isActive = (i === state.activeIndex);
+				const activeClasses = isActive ? 'text-primary--main' : 'text-slate-600';
+			}
+			<a
+				href='#'
+				on-click("handleTabClick", i)
+				class=`grid grid-rows-1 body3--normal`>
+				<div class=`pb-1 ${activeClasses}`>${label}</div>
+				<if(isActive)>
+					<div class="w-full h-3px bg-primary--main rounded-t-full"/>
+				</if>
+			</a>
+
+		</for>
+	</nav>
+	<for|tab, i| of=input.tabs>
+		<section class=`pt-4 ${state.activeIndex !== i ? 'hidden': 'flex'}`><${renderBody}/></section>
+	</for>
+</div>
+
